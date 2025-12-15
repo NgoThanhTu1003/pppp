@@ -17,12 +17,10 @@
 
 		<script>
             function onClick() {
-                // feature detect
                 if (typeof DeviceOrientationEvent.requestPermission === 'function') {
                 DeviceOrientationEvent.requestPermission()
                     .then(permissionState => {
                     if (permissionState === 'granted') {
-                        // window.addEventListener('deviceorientation', () => {});
                         window.addEventListener("deviceorientation", deviceOrientation, true);
 
                     }
@@ -32,7 +30,6 @@
                     document.getElementById('alpha').innerHTML = "error";
                     window.addEventListener("deviceorientation", deviceOrientation, true);
 
-                // handle regular non iOS 13+ devices
                 }
             }
             const btn = document.getElementById( "request" );
@@ -40,9 +37,7 @@
                 
 
 		
-			// слушаме за събитието на ориентацията на устройство
 
-			// функция, която показва данните на ориентацията
 			function deviceOrientation(event)
 			{
 				document.getElementById('alpha').innerHTML = event.alpha.toFixed(1);
@@ -53,4 +48,5 @@
 			
 		</script>
 	</body>
+
 </html>
