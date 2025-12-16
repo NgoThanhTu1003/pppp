@@ -11,7 +11,9 @@
 	<body>
         <button id="request" onclick="onClick(); removeBtn(this); " style="background-color: #e7e7e7; color: black; width: 100px; height: 50px;" > request permission</button>
 
+
 		<script>
+			
 
             function onClick() {
                 if (typeof DeviceOrientationEvent.requestPermission === 'function') {
@@ -36,10 +38,10 @@
 
 			function deviceOrientation(event)
 			{
-				document.getElementById('alpha').innerHTML = event.alpha.toFixed(1);
-				document.getElementById('beta').innerHTML = event.beta.toFixed(1);
-				document.getElementById('gamma').innerHTML = event.gamma.toFixed(1);
-				document.getElementById('absolute').innerHTML = event.absolute;
+				// document.getElementById('alpha').innerHTML = event.alpha.toFixed(1);
+				// document.getElementById('beta').innerHTML = event.beta.toFixed(1);
+				// document.getElementById('gamma').innerHTML = event.gamma.toFixed(1);
+				// document.getElementById('absolute').innerHTML = event.absolute;
 			}
 			
 		</script>
