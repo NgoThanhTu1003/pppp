@@ -9,33 +9,29 @@
 	</head>
 	
 	<body>
-		<h3>alpha = <span id="alpha"></span></h3>
-		<h3>beta = <span id="beta"></span></h3>
-		<h3>gamma = <span id="gamma"></span></h3>
-		<h3>absolute = <span id="absolute"></span></h3>
-        <button id="request" style="background-color: #e7e7e7; color: black; width: 100px; height: 50px;" > request permission</button>
+        <button id="request" onclick="onClick(); removeBtn(this); " style="background-color: #e7e7e7; color: black; width: 100px; height: 50px;" > request permission</button>
 
 		<script>
+
             function onClick() {
                 if (typeof DeviceOrientationEvent.requestPermission === 'function') {
                 DeviceOrientationEvent.requestPermission()
                     .then(permissionState => {
                     if (permissionState === 'granted') {
                         window.addEventListener("deviceorientation", deviceOrientation, true);
-
                     }
                     })
                     .catch(console.error);
                 } else {
-                    document.getElementById('alpha').innerHTML = "error";
                     window.addEventListener("deviceorientation", deviceOrientation, true);
 
                 }
             }
-            const btn = document.getElementById( "request" );
-            btn.addEventListener( "click", onClick );
                 
-
+			function removeBtn(bnt){
+				var element = bnt;
+				element.remove(bnt);
+			}
 		
 
 			function deviceOrientation(event)
