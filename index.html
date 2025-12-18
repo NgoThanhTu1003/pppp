@@ -5,7 +5,16 @@
 		<meta charset="utf-8">
 		
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		
+		<script type="importmap">
+		  {
+			"imports": {
+			  "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+			  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+              "physijs": "./physijs/physi.module.js",
+              "vax": "./vax-physi.js"
+			}
+		  }
+	</script>
 	</head>
 	
 	<body>
@@ -15,7 +24,8 @@
 		<h3>gamma = <span id="gamma"></span></h3>
 		<h3>absolute = <span id="absolute"></span></h3>
 
-		<script>
+		<script type="module">
+        import * as THREE from 'three';
 			
 
             function onClick() {
@@ -39,12 +49,12 @@
 			}
 		
 
-			function deviceOrientation(event)
-			{
+			function deviceOrientation(event){
+        		var gamma = event.gamma.toFixed(1);
 
-				document.getElementById('alpha').innerHTML = event.alpha.toFixed(1);
-				document.getElementById('beta').innerHTML = event.beta.toFixed(1);
-				document.getElementById('gamma').innerHTML = event.gamma.toFixed(1);
+				// document.getElementById('alpha').innerHTML = event.alpha.toFixed(1);
+				document.getElementById('gama-90').innerHTML = THREE.MathUtils.degToRad(gamma-90);
+				document.getElementById('gamma').innerHTML = THREE.MathUtils.degToRad(gamma);
 				// document.getElementById('absolute').innerHTML = event.absolute;
 			}
 			
