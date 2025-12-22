@@ -21,20 +21,21 @@
 		<script>
 
 
-            function onClick() {
-                if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+        function requestPermission() {
+            if (typeof DeviceOrientationEvent.requestPermission === 'function') {
                 DeviceOrientationEvent.requestPermission()
                     .then(permissionState => {
                     if (permissionState === 'granted') {
                         window.addEventListener("deviceorientation", deviceOrientation, true);
+
                     }
                     })
                     .catch(console.error);
                 } else {
                     window.addEventListener("deviceorientation", deviceOrientation, true);
-
                 }
-            }
+            } 
+      
 
 			function removeBtn(bnt){
 				var element = bnt;
