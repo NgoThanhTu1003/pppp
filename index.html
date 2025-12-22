@@ -3,42 +3,57 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		
+
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<script type="importmap">
-		  {
-			"imports": {
-			  "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
-			  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
-              "physijs": "./physijs/physi.module.js",
-              "vax": "./vax-physi.js"
-			}
-		  }
-	</script>
+
 	</head>
-	
+
 	<body>
+        <button id="request" style="background-color: #e7e7e7; color: black; width: 100px; height: 50px;" > request permission</button>
+		<!-- <h1 id="alpha"></h1>
+		<h1 id="beta"></h1>
+		<h1 id="gama"></h1> -->
 		<h3>alpha = <span id="alpha"></span></h3>
 		<h3>beta = <span id="beta"></span></h3>
 		<h3>gamma = <span id="gamma"></span></h3>
 		<h3>absolute = <span id="absolute"></span></h3>
 
-		<script type="module">
-        import * as THREE from 'three';
-			
+		<script>
 
-            window.addEventListener("deviceorientation", deviceOrientation, true);
-		
 
-			function deviceOrientation(event){
-        		// var gamma = event.gamma.toFixed(1);
+            function onClick() {
+                if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                DeviceOrientationEvent.requestPermission()
+                    .then(permissionState => {
+                    if (permissionState === 'granted') {
+                        window.addEventListener("deviceorientation", deviceOrientation, true);
+                    }
+                    })
+                    .catch(console.error);
+                } else {
+                    window.addEventListener("deviceorientation", deviceOrientation, true);
 
-				document.getElementById('alpha').innerHTML = THREE.MathDegreeToevent.alpha.toFixed(1);
-				document.getElementById('beta').innerHTML = event.beta.toFixed(1);
-				document.getElementById('gamma').innerHTML = event.gamma.toFixed(1);
-				document.getElementById('absolute').innerHTML = event.absolute;
+                }
+            }
+
+			function removeBtn(bnt){
+				var element = bnt;
+				element.remove(bnt);
 			}
 			
+
+			function deviceOrientation(event)
+			{
+
+				document.getElementById('alpha').innerHTML = event.alpha.toFixed(1);
+				document.getElementById('beta').innerHTML = event.beta.toFixed(1);
+				document.getElementById('gamma').innerHTML = event.gamma.toFixed(1);
+				// document.getElementById('absolute').innerHTML = event.absolute;
+			}
+
+			requestBtn.addEventListener("click",requestPermission);
+			requestBtn.addEventListener("click",removeBtn);
+	
 		</script>
 	</body>
 
